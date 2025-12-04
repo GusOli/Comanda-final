@@ -22,10 +22,10 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-64 h-screen bg-card border-r border-border/50 fixed left-0 top-0 flex flex-col">
+    <aside className="hidden md:flex w-64 h-screen bg-card border-r border-border/50 fixed left-0 top-0 flex-col">
       <div className="p-6">
         <h1 className="font-display text-2xl font-bold gradient-text">
-          Commanda
+          Rustikus Tabacaria
         </h1>
       </div>
 

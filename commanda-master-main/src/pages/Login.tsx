@@ -40,7 +40,7 @@ export default function Login() {
             <div className="w-full max-w-md space-y-8 glass-card p-8 animate-fade-in">
                 <div className="text-center">
                     <h1 className="font-display text-4xl font-bold gradient-text mb-2">
-                        Commanda
+                        Rustikus Tabacaria
                     </h1>
                     <p className="text-muted-foreground">
                         Entre para gerenciar seu estabelecimento

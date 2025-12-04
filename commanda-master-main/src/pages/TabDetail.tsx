@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 export default function TabDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  
+
   const tab = useComandaStore((state) => state.getTab(id || ''));
   const removeItemFromTab = useComandaStore((state) => state.removeItemFromTab);
   const updateItemQuantity = useComandaStore((state) => state.updateItemQuantity);
@@ -48,7 +48,7 @@ export default function TabDetail() {
     <MainLayout>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-4">
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
@@ -64,8 +64,8 @@ export default function TabDetail() {
                 </h1>
                 <span className={cn(
                   "px-3 py-1 rounded-full text-sm font-medium",
-                  isOpen 
-                    ? "bg-success/20 text-success" 
+                  isOpen
+                    ? "bg-success/20 text-success"
                     : "bg-muted text-muted-foreground"
                 )}>
                   {isOpen ? 'Aberta' : 'Fechada'}
@@ -89,7 +89,7 @@ export default function TabDetail() {
               </div>
             </div>
           </div>
-          
+
           {isOpen && (
             <div className="flex gap-3">
               <AddItemDialog tabId={tab.id} />
@@ -116,7 +116,7 @@ export default function TabDetail() {
               {tab.items.map((item) => (
                 <div
                   key={item.id}
-                  className="p-4 flex items-center justify-between hover:bg-secondary/30 transition-colors"
+                  className="p-4 flex flex-col md:flex-row items-start md:items-center justify-between hover:bg-secondary/30 transition-colors gap-4"
                 >
                   <div className="flex-1">
                     <h4 className="font-medium text-foreground">{item.productName}</h4>
@@ -130,7 +130,7 @@ export default function TabDetail() {
                     )}
                   </div>
 
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
                     {isOpen ? (
                       <div className="flex items-center gap-2">
                         <Button

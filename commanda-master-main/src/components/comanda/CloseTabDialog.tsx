@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,11 +32,18 @@ export function CloseTabDialog({ tab, trigger }: CloseTabDialogProps) {
   const paidValue = parseFloat(amountPaid) || 0;
   const change = paidValue - tab.total;
 
-  const handleClose = () => {
-    if (paidValue < tab.total) {
-      toast.error('Valor pago insuficiente');
-      return;
+  // Sync amountPaid when tab.total changes or dialog opens
+
+
+  useEffect(() => {
+    if (open) {
+      setAmountPaid(tab.total.toFixed(2));
     }
+  }, [open, tab.total]);
+
+  const handleClose = () => {
+    // Validation removed as per user request (just marking as closed)
+    // if (paidValue < tab.total) { ... }
 
     closeTab(tab.id, selectedMethod, paidValue);
     toast.success(`Comanda #${tab.number} fechada com sucesso!`);
@@ -135,9 +142,9 @@ export function CloseTabDialog({ tab, trigger }: CloseTabDialogProps) {
               variant="success"
               className="flex-1"
               onClick={handleClose}
-              disabled={selectedMethod === 'cash' && paidValue < tab.total}
+              disabled={false}
             >
-              Confirmar Pagamento
+              Fechar Comanda
             </Button>
           </div>
         </div>
